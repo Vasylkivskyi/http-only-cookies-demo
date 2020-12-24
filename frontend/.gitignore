@@ -1,0 +1,7 @@
+node_modules
+coverage
+.vscode
+.history
+.next
+.DS_Store
+/build
