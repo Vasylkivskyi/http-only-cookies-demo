@@ -21,8 +21,11 @@ const app = axios.create({
 */
 app.interceptors.response.use(
   response => (response),
-  error => console.log(error)
-  // error => (Promise.reject(error.response.data.))
-)
+  error => ({
+    message: error.response.data,
+    status: error.response.status,
+    error: error
+  })
+);
 
 export default app;

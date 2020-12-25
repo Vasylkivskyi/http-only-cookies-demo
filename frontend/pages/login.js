@@ -28,6 +28,7 @@ export default function Login() {
       data: formData
     });
     if (res.status === 200) {
+      console.log(JSON.stringify(res))
       showMessage(res.data);
       setTimeout(() => Router.push('/secret'), 2000);
     } else {

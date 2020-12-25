@@ -5,9 +5,11 @@ const USER = {
 }
 
 const corsWhiteList = ['http://localhost:3000'];
+const EXPIRATION = 20 * 1000;
 
 module.exports = {
   SECRET_TOKEN,
   USER,
+  EXPIRATION,
   corsWhiteList,
 }

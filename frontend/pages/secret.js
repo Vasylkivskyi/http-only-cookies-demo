@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Layout from '../src/components/Layout';
 import api from '../src/utils/axiosConfig';
 import { API_URL } from '../src/constants';
+import Router from 'next/router';
 
 
 const Secret = () => {
@@ -21,12 +22,21 @@ const Secret = () => {
   );
 }
 
-Secret.getInitialProps = async ({ req, res, match, history, location, ...ctx }) => {
-  let result = await api.get(`${API_URL}/secret`);
-  console.log(result);
-  return {
-    result: result
+Secret.getInitialProps = async (ctx) => {
+  const { res } = ctx;
+  const response = await api.get(`${API_URL}/secret`);
+  if (response.status === 200) {
+    return {
+      success: true
+    }
   }
+  if(typeof window === 'undefined'){
+    res.writeHead(302, { Location: '/login' })
+    res.end()
+    return {}
+  }
+  Router.push('/login')
+  return {}
 }
 
 export default Secret;
