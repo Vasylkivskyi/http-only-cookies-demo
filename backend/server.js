@@ -1,13 +1,13 @@
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { SECRET_TOKEN, USER } = require('./constants');
+const corsMiddleware = require('./middlawares/allow_cross_domain');
 
 const PORT = process.env.PORT || 7878;
 const app = express();
-app.use(cors({credentials: true, origin: 'localhost:8080'}));
-app.use(cookieParser( ));
+app.use(corsMiddleware)
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.post('/login', (req, res) => {
@@ -26,7 +26,7 @@ app.post('/login', (req, res) => {
   }
 });
 
-app.get('/secret', cors(), (req, res) => {
+app.get('/secret', (req, res) => {
   res.status(200)
   res.json('Route "/secret" is working 😊');
 });

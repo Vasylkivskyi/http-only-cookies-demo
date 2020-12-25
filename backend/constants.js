@@ -4,7 +4,10 @@ const USER = {
   password: 'testPassword1234',
 }
 
+const corsWhiteList = ['http://localhost:3000'];
+
 module.exports = {
   SECRET_TOKEN,
   USER,
+  corsWhiteList,
 }

@@ -4,7 +4,7 @@ import Layout from '../src/components/Layout';
 import React, { useState } from 'react';
 import { API_URL } from '../src/constants';
 import Router from 'next/router';
-import axios from 'axios';
+import api from '../src/utils/axiosConfig';
 
 
 export default function Login() {
@@ -20,7 +20,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios(`${API_URL}/login`, {
+    const res = await api(`${API_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
